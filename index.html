@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMEKSA FUN RUN 5K - OSIS SMKN 1 Bantaeng</title>
-    <meta name="description" content="Pendaftaran resmi SMEKSA Fun Run 5K bersama OSIS SMKN 1 Bantaeng. Mari sehat dan berlari bersama!">
+    <meta name="description" content="Pendaftaran resmi SMEKSA Fun Run 5K bersama OSIS SMKN 1 Bantaeng. Start dari Pantai Seruni Bantaeng. Mari sehat dan berlari bersama!">
     
     <!-- Google Fonts: Lexend & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -180,6 +180,20 @@
             box-shadow: 0 12px 25px -4px rgba(5, 150, 105, 0.45);
         }
 
+        .btn-outline {
+            background: var(--color-primary-light);
+            color: var(--color-primary-hover);
+            border: 1.5px solid var(--color-primary-soft);
+            padding: 10px 18px;
+            font-size: 0.85rem;
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: #ffffff;
+            border-color: var(--color-primary);
+        }
+
         .btn:active {
             transform: scale(0.96);
         }
@@ -269,7 +283,7 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 26px;
             align-items: center;
         }
 
@@ -370,7 +384,7 @@
             display: flex;
             justify-content: center;
             padding: 0 20px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .countdown-card {
@@ -468,6 +482,52 @@
         }
 
         /* ==========================================================================
+           DYNAMIC RUNNING MARQUEE TICKER
+           ========================================================================== */
+        .marquee-strip {
+            background: linear-gradient(90deg, var(--color-dark-green), var(--color-primary-hover), var(--color-dark-green));
+            color: #ffffff;
+            padding: 14px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            border-top: 2px solid var(--color-accent);
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            align-items: center;
+            gap: 36px;
+            animation: marqueeScroll 26s linear infinite;
+        }
+
+        .marquee-strip:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Lexend', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .marquee-item i {
+            color: var(--color-accent);
+            font-size: 1rem;
+        }
+
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ==========================================================================
            SECTIONS LAYOUT
            ========================================================================== */
         .section-padding {
@@ -479,7 +539,7 @@
         }
 
         /* ==========================================================================
-           KATEGORI (PRICING CARDS)
+           KATEGORI (PRICING CARDS) - HOVER/ACTIVE ONLY
            ========================================================================== */
         .pricing-grid {
             display: grid;
@@ -561,7 +621,7 @@
         }
 
         .pkg-features {
-            margin-bottom: 34px;
+            margin-bottom: 28px;
             flex-grow: 1;
         }
 
@@ -596,6 +656,181 @@
         .pkg-features li.disabled .icon-circle {
             background-color: #f1f5f9;
             color: #94a3b8;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* ==========================================================================
+           RUTE LARI 5K & GOOGLE MAPS SECTION
+           ========================================================================== */
+        .route-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        .route-visualizer-card {
+            background: var(--color-bg-body);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .route-svg-box {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+            border-radius: var(--radius-lg);
+            padding: 24px 16px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .route-svg-badge {
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(6px);
+            color: #a7f3d0;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 50px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .route-svg {
+            width: 100%;
+            height: 150px;
+            display: block;
+        }
+
+        .route-path-glow {
+            fill: none;
+            stroke: rgba(16, 185, 129, 0.25);
+            stroke-width: 10;
+            stroke-linecap: round;
+        }
+
+        .route-path-dash {
+            fill: none;
+            stroke: #34d399;
+            stroke-width: 3.5;
+            stroke-dasharray: 10 8;
+            stroke-linecap: round;
+            animation: dashFlow 1.5s linear infinite;
+        }
+
+        @keyframes dashFlow {
+            to { stroke-dashoffset: -36; }
+        }
+
+        .checkpoint-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .checkpoint-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--color-bg-white);
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+
+        .checkpoint-item:hover {
+            border-color: var(--color-primary);
+            transform: translateX(4px);
+        }
+
+        .cp-badge {
+            min-width: 58px;
+            padding: 6px 8px;
+            border-radius: 8px;
+            font-family: 'Lexend', sans-serif;
+            font-weight: 800;
+            font-size: 0.78rem;
+            text-align: center;
+            background: var(--color-primary-soft);
+            color: var(--color-primary-hover);
+        }
+
+        .cp-badge.accent {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .cp-info h4 {
+            font-size: 0.95rem;
+            color: var(--color-text-main);
+        }
+
+        .cp-info p {
+            font-size: 0.83rem;
+            color: var(--color-text-muted);
+        }
+
+        .map-card {
+            background: var(--color-bg-white);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-md);
+        }
+
+        .map-frame-wrap {
+            position: relative;
+            width: 100%;
+            min-height: 360px;
+            flex-grow: 1;
+            background: #e2e8f0;
+        }
+
+        .map-frame-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .map-footer {
+            padding: 20px 24px;
+            background: var(--color-bg-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .map-location-text h4 {
+            font-size: 1rem;
+            color: var(--color-text-main);
+            margin-bottom: 2px;
+        }
+
+        .map-location-text p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
         }
 
         /* ==========================================================================
@@ -828,7 +1063,7 @@
             padding: 50px 40px;
             text-align: center;
             color: #ffffff;
-            margin: 20px auto 0;
+            margin: 40px auto 0;
             box-shadow: var(--shadow-lg);
             position: relative;
             overflow: hidden;
@@ -847,6 +1082,13 @@
             font-size: 1.05rem;
         }
 
+        .cta-btn-group {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .btn-white {
             background-color: #ffffff;
             color: var(--color-primary-hover);
@@ -856,6 +1098,104 @@
         .btn-white:hover {
             background-color: #f0fdf4;
             transform: translateY(-3px);
+        }
+
+        .btn-whatsapp {
+            background-color: rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(6px);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #25d366;
+            border-color: #25d366;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        /* ==========================================================================
+           SIZE CHART MODAL
+           ========================================================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            background: var(--color-bg-white);
+            border-radius: var(--radius-xl);
+            max-width: 480px;
+            width: 100%;
+            padding: 32px;
+            box-shadow: var(--shadow-float);
+            transform: translateY(20px) scale(0.96);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.open .modal-box {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--color-bg-body);
+            color: var(--color-text-muted);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 18px;
+            font-size: 0.92rem;
+            text-align: center;
+        }
+
+        .size-table th,
+        .size-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .size-table th {
+            background: var(--color-primary-light);
+            color: var(--color-primary-hover);
+            font-family: 'Lexend', sans-serif;
+            font-weight: 700;
+        }
+
+        .size-table tr:last-child td {
+            border-bottom: none;
         }
 
         /* ==========================================================================
@@ -977,6 +1317,9 @@
                 max-width: 560px;
                 grid-template-columns: 1fr;
             }
+            .route-grid {
+                grid-template-columns: 1fr;
+            }
             .facilities-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1046,6 +1389,9 @@
             .cta-banner h2 {
                 font-size: 1.6rem;
             }
+            .map-frame-wrap {
+                min-height: 290px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1058,6 +1404,9 @@
             }
             .social-link {
                 justify-content: center;
+            }
+            .route-visualizer-card {
+                padding: 22px 18px;
             }
         }
     </style>
@@ -1079,10 +1428,10 @@
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="#kategori">Kategori</a>
+                <a href="#rute">Rute & Lokasi</a>
                 <a href="#jadwal">Jadwal</a>
                 <a href="#fasilitas">Fasilitas</a>
                 <a href="#faq">FAQ</a>
-                <!-- Menggulir ke bagian pilihan paket (#kategori) -->
                 <a href="#kategori" class="btn btn-primary">
                     <i class="fa-solid fa-person-running"></i> Daftar Sekarang
                 </a>
@@ -1131,6 +1480,25 @@
         </div>
     </div>
 
+    <!-- MOVING RUNNING MARQUEE TICKER -->
+    <div class="marquee-strip" aria-hidden="true">
+        <div class="marquee-track">
+            <span class="marquee-item"><i class="fa-solid fa-person-running"></i> SMEKSA FUN RUN 5KM</span>
+            <span class="marquee-item"><i class="fa-solid fa-calendar-check"></i> MINGGU, 20 DESEMBER 2026</span>
+            <span class="marquee-item"><i class="fa-solid fa-location-dot"></i> START: PANTAI SERUNI BANTAENG</span>
+            <span class="marquee-item"><i class="fa-solid fa-medal"></i> MEDALI FINISHER & JERSEY EKSKLUSIF</span>
+            <span class="marquee-item"><i class="fa-solid fa-gift"></i> PULUHAN DOORPRIZE MENARIK</span>
+            <span class="marquee-item"><i class="fa-solid fa-fire"></i> KUOTA TERBATAS — DAFTAR SEKARANG</span>
+            <!-- Duplicate items for seamless infinite loop -->
+            <span class="marquee-item"><i class="fa-solid fa-person-running"></i> SMEKSA FUN RUN 5KM</span>
+            <span class="marquee-item"><i class="fa-solid fa-calendar-check"></i> MINGGU, 20 DESEMBER 2026</span>
+            <span class="marquee-item"><i class="fa-solid fa-location-dot"></i> START: PANTAI SERUNI BANTAENG</span>
+            <span class="marquee-item"><i class="fa-solid fa-medal"></i> MEDALI FINISHER & JERSEY EKSKLUSIF</span>
+            <span class="marquee-item"><i class="fa-solid fa-gift"></i> PULUHAN DOORPRIZE MENARIK</span>
+            <span class="marquee-item"><i class="fa-solid fa-fire"></i> KUOTA TERBATAS — DAFTAR SEKARANG</span>
+        </div>
+    </div>
+
     <!-- KATEGORI PENDAFTARAN -->
     <section id="kategori" class="section-padding">
         <div class="container">
@@ -1146,7 +1514,7 @@
                     <div class="popular-ribbon">
                         <i class="fa-solid fa-star"></i> LENGKAP
                     </div>
-                    <div class="pkg-name">PACK 1 (FULL PACK)</div>
+                    <div class="pkg-name">PACK 1 </div>
                     <div class="pkg-desc">Paket lengkap dengan Jersey eksklusif SMEKSA RUN</div>
                     <div class="pkg-price">Rp 185.000 <span>/ peserta</span></div>
                     <ul class="pkg-features">
@@ -1155,14 +1523,19 @@
                         <li><span class="icon-circle"><i class="fa-solid fa-check"></i></span> Nomor Dada (BIB)</li>
                         <li><span class="icon-circle"><i class="fa-solid fa-check"></i></span> Gelang Undian Doorprize</li>
                     </ul>
-                    <a href="https://forms.gle/htS8qveXq1GgGJQN6" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
-                        DAFTAR <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                    <div class="card-actions">
+                        <button type="button" class="btn btn-outline" id="openSizeChartBtn" style="width: 100%;">
+                            <i class="fa-solid fa-ruler-horizontal"></i> Lihat Ukuran Jersey
+                        </button>
+                        <a href="https://forms.gle/htS8qveXq1GgGJQN6" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+                            DAFTAR <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Card 2 (Link Google Form Pack 2) -->
                 <div class="pricing-card reveal delay-2" tabindex="0">
-                    <div class="pkg-name">PACK 2 (REGULER)</div>
+                    <div class="pkg-name">PACK 2 </div>
                     <div class="pkg-desc">Paket ekonomis tetap dapat medali & kesempatan doorprize</div>
                     <div class="pkg-price">Rp 95.000 <span>/ peserta</span></div>
                     <ul class="pkg-features">
@@ -1171,21 +1544,113 @@
                         <li><span class="icon-circle"><i class="fa-solid fa-check"></i></span> Gelang Undian Doorprize</li>
                         <li class="disabled"><span class="icon-circle"><i class="fa-solid fa-xmark"></i></span> Tanpa Jersey Lari</li>
                     </ul>
-                    <a href="https://forms.gle/XLzZqo2aXiCjiRE1A" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
-                        DAFTAR <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                    <div class="card-actions">
+                        <a href="https://forms.gle/XLzZqo2aXiCjiRE1A" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+                            DAFTAR <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RUTE LARI 5K & GOOGLE MAPS SECTION -->
+    <section id="rute" class="section-padding bg-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge">Jalur & Lokasi</span>
+                <h2 class="section-title">Rute Lari 5K & Titik Lokasi</h2>
+                <p class="section-subtitle">Kenali jalur lintasan 5KM serta titik kumpul utama di Pantai Seruni Bantaeng.</p>
+            </div>
+
+            <div class="route-grid">
+                <!-- Animated Route Track & Checkpoints -->
+                <div class="route-visualizer-card reveal delay-1">
+                    <div>
+                        <div class="route-svg-box">
+                            <span class="route-svg-badge"><i class="fa-solid fa-route"></i> Simulasi Jalur 5KM</span>
+                            <svg class="route-svg" viewBox="0 0 420 150" preserveAspectRatio="xMidYMid meet">
+                                <!-- Background Glow Path -->
+                                <path id="runTrackPath" class="route-path-glow" d="M 45,115 C 95,115 110,45 175,45 C 240,45 250,115 315,105 C 355,98 370,60 385,45" />
+                                <!-- Animated Dashed Path -->
+                                <path class="route-path-dash" d="M 45,115 C 95,115 110,45 175,45 C 240,45 250,115 315,105 C 355,98 370,60 385,45" />
+                                
+                                <!-- Start Pin -->
+                                <circle cx="45" cy="115" r="8" fill="#10b981" stroke="#ffffff" stroke-width="2.5" />
+                                <text x="45" y="138" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle" font-family="Lexend, sans-serif">START</text>
+
+                                <!-- Water Station Pin -->
+                                <circle cx="215" cy="65" r="7" fill="#38bdf8" stroke="#ffffff" stroke-width="2" />
+                                <text x="215" y="28" fill="#bae6fd" font-size="10" font-weight="bold" text-anchor="middle" font-family="Lexend, sans-serif">WATER KM 2.5</text>
+
+                                <!-- Finish Pin -->
+                                <circle cx="385" cy="45" r="8" fill="#f59e0b" stroke="#ffffff" stroke-width="2.5" />
+                                <text x="385" y="25" fill="#fde68a" font-size="10" font-weight="bold" text-anchor="middle" font-family="Lexend, sans-serif">FINISH 5K</text>
+
+                                <!-- Moving Runner Dot -->
+                                <circle r="6.5" fill="#ffffff" stroke="#f59e0b" stroke-width="3">
+                                    <animateMotion dur="6s" repeatCount="indefinite" path="M 45,115 C 95,115 110,45 175,45 C 240,45 250,115 315,105 C 355,98 370,60 385,45" />
+                                </circle>
+                            </svg>
+                        </div>
+
+                        <div class="checkpoint-list">
+                            <div class="checkpoint-item">
+                                <div class="cp-badge">KM 0.0</div>
+                                <div class="cp-info">
+                                    <h4>Start Line &mdash; Pantai Seruni Bantaeng</h4>
+                                    <p>Titik kumpul, pemanasan bersama, dan pelepasan peserta (06:00 WITA).</p>
+                                </div>
+                            </div>
+                            <div class="checkpoint-item">
+                                <div class="cp-badge">KM 2.5</div>
+                                <div class="cp-info">
+                                    <h4>Water Station & Cek Poin</h4>
+                                    <p>Pos hidrasi air mineral gratis & tim medis siaga di titik tengah rute.</p>
+                                </div>
+                            </div>
+                            <div class="checkpoint-item">
+                                <div class="cp-badge accent">KM 5.0</div>
+                                <div class="cp-info">
+                                    <h4>Finish Line & Area Panggung Utama</h4>
+                                    <p>Pengalungan medali finisher, refreshment, dan pengundian doorprize.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div class="map-card reveal delay-2">
+                    <div class="map-frame-wrap">
+                        <iframe 
+                            title="Lokasi Pantai Seruni Bantaeng"
+                            src="https://maps.google.com/maps?q=Pantai%20Seruni%20Bantaeng%2C%20Sulawesi%20Selatan&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="map-footer">
+                        <div class="map-location-text">
+                            <h4><i class="fa-solid fa-location-dot" style="color: var(--color-primary);"></i> Pantai Seruni Bantaeng</h4>
+                            <p>Anjungan Pantai Seruni, Kec. Bantaeng, Kab. Bantaeng, Sulawesi Selatan</p>
+                        </div>
+                        <a href="https://maps.google.com/?q=Pantai+Seruni+Bantaeng+Sulawesi+Selatan" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 11px 20px; font-size: 0.88rem;">
+                            <i class="fa-solid fa-diamond-turn-right"></i> Buka Google Maps
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- JADWAL LOMBA -->
-    <section id="jadwal" class="section-padding bg-white">
+    <section id="jadwal" class="section-padding">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-badge">Rundown Acara</span>
                 <h2 class="section-title">Jadwal Lomba</h2>
-                <p class="section-subtitle">Minggu, 20 Desember 2026 &mdash; Lapangan Utama SMKN 1 Bantaeng</p>
+                <p class="section-subtitle">Minggu, 20 Desember 2026 &mdash; Start di Pantai Seruni Bantaeng</p>
             </div>
             
             <div class="timeline">
@@ -1193,14 +1658,14 @@
                     <div class="time-badge">05:30 WITA</div>
                     <div class="timeline-content">
                         <h3>Open Gate & Registrasi Ulang</h3>
-                        <p>Peserta tiba di lokasi, pemanasan bersama, persiapan barisan, dan penitipan barang (Drop Bag).</p>
+                        <p>Peserta tiba di Pantai Seruni Bantaeng, pemanasan bersama, persiapan barisan, dan penitipan barang (Drop Bag).</p>
                     </div>
                 </div>
                 <div class="timeline-item reveal delay-1">
                     <div class="time-badge">06:00 WITA</div>
                     <div class="timeline-content">
                         <h3 style="color: var(--color-primary);">Flag Off (Mulai Lari 5KM)</h3>
-                        <p>Pelepasan resmi seluruh pelari SMEKSA Fun Run 5km dari garis start.</p>
+                        <p>Pelepasan resmi seluruh pelari SMEKSA Fun Run 5km dari garis start Pantai Seruni Bantaeng.</p>
                     </div>
                 </div>
                 <div class="timeline-item reveal delay-2">
@@ -1229,7 +1694,7 @@
     </section>
 
     <!-- FASILITAS PESERTA -->
-    <section id="fasilitas" class="section-padding">
+    <section id="fasilitas" class="section-padding bg-white">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-badge">Benefit Peserta</span>
@@ -1274,7 +1739,7 @@
     </section>
 
     <!-- FAQ SECTION -->
-    <section id="faq" class="section-padding bg-white">
+    <section id="faq" class="section-padding">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-badge">Pusat Informasi</span>
@@ -1314,16 +1779,50 @@
                 </details>
             </div>
 
-            <!-- CTA BANNER (Menggulir ke bagian pemilihan paket #kategori) -->
+            <!-- CTA BANNER -->
             <div class="cta-banner reveal">
                 <h2>Siap Menjadi Bagian dari SMEKSA Fun Run 2026?</h2>
-                <p>Jangan sampai kehabisan slot! Pilih paket pendaftaranmu dan amankan nomor BIB sekarang juga.</p>
-                <a href="#kategori" class="btn btn-white">
-                    <i class="fa-solid fa-file-signature"></i> Isi Formulir Pendaftaran
-                </a>
+                <p>Jangan sampai kehabisan slot! Pilih paket pendaftaranmu dan ajak temanmu berlari bersama dari Pantai Seruni Bantaeng.</p>
+                <div class="cta-btn-group">
+                    <a href="#kategori" class="btn btn-white">
+                        <i class="fa-solid fa-file-signature"></i> Isi Formulir Pendaftaran
+                    </a>
+                    <button type="button" class="btn btn-whatsapp" id="shareWaBtn">
+                        <i class="fa-brands fa-whatsapp"></i> Ajak Teman via WhatsApp
+                    </button>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- SIZE CHART MODAL -->
+    <div class="modal-overlay" id="sizeChartModal" aria-hidden="true">
+        <div class="modal-box" role="dialog" aria-labelledby="modalTitle">
+            <button type="button" class="modal-close" id="closeSizeChartBtn" aria-label="Tutup">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <span class="section-badge" style="margin-bottom: 8px;">Panduan Ukuran</span>
+            <h3 id="modalTitle" style="font-size: 1.4rem; color: var(--color-text-main);">Size Chart Jersey SMEKSA Run</h3>
+            <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-top: 4px;">Ukuran dalam satuan centimeter (cm), toleransi jahitan 1-2 cm.</p>
+            
+            <table class="size-table">
+                <thead>
+                    <tr>
+                        <th>Ukuran</th>
+                        <th>Lebar Dada</th>
+                        <th>Panjang Baju</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>S</strong></td><td>48 cm</td><td>68 cm</td></tr>
+                    <tr><td><strong>M</strong></td><td>50 cm</td><td>70 cm</td></tr>
+                    <tr><td><strong>L</strong></td><td>52 cm</td><td>72 cm</td></tr>
+                    <tr><td><strong>XL</strong></td><td>54 cm</td><td>74 cm</td></tr>
+                    <tr><td><strong>XXL</strong></td><td>56 cm</td><td>76 cm</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
@@ -1483,6 +1982,36 @@
                         });
                     }
                 });
+            });
+
+            // 6. Size Chart Modal Logic
+            const sizeChartModal = document.getElementById('sizeChartModal');
+            const openSizeChartBtn = document.getElementById('openSizeChartBtn');
+            const closeSizeChartBtn = document.getElementById('closeSizeChartBtn');
+
+            openSizeChartBtn.addEventListener('click', () => {
+                sizeChartModal.classList.add('open');
+                sizeChartModal.setAttribute('aria-hidden', 'false');
+            });
+
+            closeSizeChartBtn.addEventListener('click', () => {
+                sizeChartModal.classList.remove('open');
+                sizeChartModal.setAttribute('aria-hidden', 'true');
+            });
+
+            sizeChartModal.addEventListener('click', (e) => {
+                if (e.target === sizeChartModal) {
+                    sizeChartModal.classList.remove('open');
+                    sizeChartModal.setAttribute('aria-hidden', 'true');
+                }
+            });
+
+            // 7. Share via WhatsApp Logic
+            const shareWaBtn = document.getElementById('shareWaBtn');
+            shareWaBtn.addEventListener('click', () => {
+                const pageUrl = window.location.href;
+                const message = `Ayo ikut SMEKSA FUN RUN 5K bersama OSIS SMKN 1 Bantaeng! Start di Pantai Seruni Bantaeng, Minggu 20 Desember 2026. Daftar sekarang di sini: ${pageUrl}`;
+                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
             });
         });
     </script>
